@@ -7,6 +7,7 @@
             Trashed Posts
         </div>
         <div class="card-body">
+            @if($posts->count() > 0)
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -17,20 +18,25 @@
                 </tr>
                 </thead>
                 <tbody>
+                   @foreach($posts as $post)
+                       <tr>
+                           <th scope="row">{{ $post ->id }}</th>
+                           <td><img src="{{$post ->featured}}" alt="{{ $post ->title }}" width="100" height="50"></td>
+                           <td>{{ $post ->title }}</td>
+                           <td>
+                               <a href="{{ route('post.restore',$post ->id) }}" class="btn btn-success btn-sm" >Restore</a>
+                               <a href="{{ route('post.kill',$post ->id) }}" class="btn btn-danger btn-sm" >Delete</a>
+                           </td>
+                       </tr>
 
-                @foreach($posts as $post)
-                    <tr>
-                        <th scope="row">{{ $post ->id }}</th>
-                        <td><img src="{{ asset('public/'.$post ->featured ) }}" alt="{{ $post ->title }}" width="100" height="50"></td>
-                        <td>{{ $post ->title }}</td>
-                        <td>
-                            <a href="{{ route('post.trash') }}" class="btn btn-success btn-sm" >Restore</a>
-                            <a href="{{ route('post.trash') }}" class="btn btn-danger btn-sm" >Delete</a>
-                        </td>
-                    </tr>
-                @endforeach
                 </tbody>
             </table>
+            @endforeach
+
+
+            @else
+                No Trashed Posts yet!
+            @endif
             <div class="float-right">
             </div>
 

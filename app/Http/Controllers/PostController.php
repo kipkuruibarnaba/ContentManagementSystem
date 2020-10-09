@@ -60,7 +60,7 @@ class PostController extends Controller
                 'title'=> $request->input('title'),
                 'content'=>$request->input('content'),
                 'category_id'=>$request->input('category_id'),
-                'featured'=> 'uploads/posts/'.$featuredNewName,
+                'featured'=> 'public/uploads/posts/'.$featuredNewName,
                 'slug'=>str_slug($request->input('title'))
             ]);
             $postData=Post::create($data);
@@ -89,7 +89,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        dd('edit');
+        $post=Post::find($id);
+        $categories=Category::all();
+      return view('admin.posts.edit',compact('post','categories'));
     }
 
     /**
@@ -101,7 +103,24 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd(update);
+        $this->validate($request, [
+            'title'=> 'required',
+            'content'=>'required',
+            'category_id'=>'required'
+        ]);
+        $post=Post::find($id);
+        if($request->hasFile('featured')){
+            $featured=$request->file('featured');
+            $featuredNewName=time(). $featured->getClientOriginalName();
+            $featured->move(public_path('/uploads/posts'), $featuredNewName);
+            $post->featured = 'public/uploads/posts/'.$featuredNewName;
+        }
+        $post->title = $request->input('title');
+        $post->category_id = $request->input('category_id');
+        $post->content = $request->input('content');
+
+         $post->save();
+        return redirect()->route('posts')->with('success' , 'Post Updated Succesfullly!');
     }
 
     /**
@@ -120,5 +139,17 @@ class PostController extends Controller
     {
         $posts=Post::onlyTrashed()->get();
         return view('admin.posts.trash',compact('posts'));
+    }
+    public function kill($id)
+    {
+        $posts=Post::withTrashed()->where('id', $id)->first();
+        $posts->forceDelete();
+      return redirect()->back()->with('success','Post deleted Permanently');
+    }
+    public function restore($id)
+    {
+        $post=Post::withTrashed()->where('id', $id)->first();
+        $post->restore();
+        return redirect()->route('posts')->with('success' , 'Post Restored Successfully!');
     }
 }

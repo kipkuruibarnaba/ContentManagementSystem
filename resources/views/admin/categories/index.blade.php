@@ -7,6 +7,7 @@
            Categories
         </div>
         <div class="card-body">
+            @if($categories->count() > 0)
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -28,6 +29,9 @@
                 @endforeach
                 </tbody>
             </table>
+            @else
+            No Categories yet!
+            @endif
             <div class="float-right">
                 {{$categories->links()}}
             </div>

@@ -7,30 +7,35 @@
             Posts
         </div>
         <div class="card-body">
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Action</th>
-                </tr>
-                </thead>
-                <tbody>
-
-                @foreach($posts as $post)
+            @if($posts->count() > 0)
+                <table class="table table-bordered">
+                    <thead>
                     <tr>
-                        <th scope="row">{{ $post ->id }}</th>
-                        <td><img src="{{ asset('public/'.$post ->featured ) }}" alt="{{ $post ->title }}" width="100" height="50"></td>
-                        <td>{{ $post ->title }}</td>
-                        <td>
-                            <a href="{{ route('post.edit',$post ->id) }}" class="btn btn-warning btn-sm" >Edit</a>
-                            <a href="{{ route('post.delete',$post ->id) }}" class="btn btn-danger btn-sm" >Trash</a>
-                        </td>
+                        <th scope="col">ID</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Action</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+
+                    @foreach($posts as $post)
+                        <tr>
+                            <th scope="row">{{ $post ->id }}</th>
+                            <td><img src="{{ $post ->featured  }}" alt="{{ $post ->title }}" width="100" height="50"></td>
+                            <td>{{ $post ->title }}</td>
+                            <td>
+                                <a href="{{ route('post.edit',$post ->id) }}" class="btn btn-warning btn-sm" >Edit</a>
+                                <a href="{{ route('post.delete',$post ->id) }}" class="btn btn-danger btn-sm" >Trash</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            @else
+                No Posts yet!
+            @endif
+
             <div class="float-right">
                 {{ $posts->links() }}
             </div>
