@@ -1,14 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Category;
-use Session;
-use Illuminate\Pagination\Paginator;
+
 use Illuminate\Http\Request;
+use App\Questionnaire;
+use App\Question;
+use Illuminate\Support\Facades\Auth;
 
-
-class CategoriesController extends Controller
+class QuestionnaireController extends Controller
 {
+
+ public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +21,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories=Category::paginate(5);
-        return view('admin.categories.index',compact('categories'));
+        //
     }
 
     /**
@@ -27,7 +31,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.create');
+        return view('questionnaires.create');
     }
 
     /**
@@ -38,13 +42,15 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name'=> 'required'
-        ]);
-        $category= new Category;
-        $category->name = $request->name;
-        $category->save();
-        return redirect()->route('categories')->with('info' , 'Category Saved Successfully!');
+        $data = $request->all();
+        // dd($data);
+        $Questionnaire = new Questionnaire;
+        $Questionnaire->user_id = auth::user()->id;
+        $Questionnaire->title = $request->category;
+        $Questionnaire->purpose = $request->purpose;
+        $Questionnaire->save();
+        return redirect(url('/'))->with('success', 'Category created successfully');
+
     }
 
     /**
@@ -53,9 +59,12 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $questionnaires = Questionnaire::all();
+        // dd($questionnaires);
+        return view('questionnaires.show', compact('questionnaires'));
+
     }
 
     /**
@@ -66,8 +75,7 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        $category=Category::find($id);
-        return view('admin.categories.edit',compact('category'));
+        //
     }
 
     /**
@@ -79,10 +87,7 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category=Category::find($id);
-        $category->name = $request->name;
-        $category->save();
-        return redirect()->route('categories')->with('success' , 'Category Updated Successfully!');
+        //
     }
 
     /**
@@ -93,8 +98,6 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        $category=Category::find($id);
-        $category->delete();
-        return redirect()->route('categories')->with('success' , 'Category Deleted Successfully!');
+        //
     }
 }

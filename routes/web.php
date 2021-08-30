@@ -11,85 +11,77 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
-Route::get('/', 'TodosController@index');
+
+Route::get('/', 'HomeController@index');
 
 Auth::routes();
-
 Route::group(['prefix'=>'admin',  'middleware'=>'auth'], function (){
-//    Route::get('/home', 'HomeController@index')->name('home');
 
     Route::get('/home',[
         'uses' => 'HomeController@index',
         'as'=> 'home'
     ]);
 
-    Route::get('/post/create',[
-        'uses' => 'PostController@create',
-        'as'=> 'post.create'
+    Route::get('/create/questionnaire',[
+        'uses' => 'QuestionnaireController@create',
+        'as'=> 'questionnaire'
+    ]);
+    Route::post('/store/questionnaire',[
+        'uses' => 'QuestionnaireController@store',
+        'as'=> 'storequestionnaire'
+    ]);    
+
+    Route::post('/store/question',[
+        'uses' => 'QuestionController@store',
+        'as'=> 'storequestion'
     ]);
 
-    Route::post('/post/store',[
-        'uses' => 'PostController@store',
-        'as'=> 'post.store'
-    ]);
+    Route::get('/showquestionnaires',[
+        'uses' => 'QuestionnaireController@show',
+        'as'=> 'showquestionnaires'
+    ]);  
 
-    Route::get('/category/create',[
-        'uses' => 'CategoriesController@create',
-        'as'=> 'category.create'
+    Route::get('/category/{id}',[
+        'uses' => 'QuestionController@create',
+        'as'=> 'category.get'
     ]);
-    Route::get('/posts',[
-        'uses' => 'PostController@index',
-        'as'=> 'posts'
-    ]);
-    Route::get('/post/edit/{id}',[
-        'uses' => 'PostController@edit',
-        'as'=> 'post.edit'
-    ]);
-    Route::post('/post/update/{id}',[
-        'uses' => 'PostController@update',
-        'as'=> 'post.update'
-    ]);
-    Route::get('/post/delete/{id}',[
-        'uses' => 'PostController@destroy',
-        'as'=> 'post.delete'
-    ]);
-    Route::get('/post/trash',[
-        'uses' => 'PostController@trashed',
-        'as'=> 'post.trash'
-    ]);
-    Route::get('/post/kill/{id}',[
-        'uses' => 'PostController@kill',
-        'as'=> 'post.kill'
-    ]);
+    Route::get('/viewquestions/{id}',[
+        'uses' => 'QuestionController@viewquestions',
+        'as'=> 'viewquestions.get'
+    ]);   
 
-    Route::get('/post/restore/{id}',[
-        'uses' => 'PostController@restore',
-        'as'=> 'post.restore'
-    ]);
-    Route::get('/categories',[
-        'uses' => 'CategoriesController@index',
-        'as'=> 'categories'
-    ]);
-    Route::get('/category/edit/{id}',[
-        'uses' => 'CategoriesController@edit',
-        'as'=> 'category.edit'
-    ]);
-    Route::get('/category/delete/{id}',[
-        'uses' => 'CategoriesController@destroy',
-        'as'=> 'category.delete'
-    ]);
+    Route::get('/surveys/{id}',[
+        'uses' => 'SurveyController@create',
+        'as'=> 'surveys'
+    ]);   
 
-    Route::post('/category/store',[
-        'uses' => 'CategoriesController@store',
-        'as'=> 'category.store'
-    ]);
+    Route::post('/completesurvey/{id}',[
+        'uses' => 'SurveyController@store',
+        'as'=> 'completesurvey'
+    ]);   
+    Route::get('/showreports',[
+        'uses' => 'ReportsController@reports',
+        'as'=> 'showreports'
+    ]); 
 
-    Route::post('/category/update/{id}',[
-        'uses' => 'CategoriesController@update',
-        'as'=> 'category.update'
-    ]);
+    Route::post('/filter/questionnaire',[
+        'uses' => 'HomeController@search',
+        'as'=> 'filter'
+    ]); 
+
+    Route::post('/generateGeneralPdf',[
+        'uses' => 'HomeController@generalReport',
+        'as'=> 'generateGeneralPdf'
+    ]); 
+
+    Route::post('/generateParticipantsPdf',[
+        'uses' => 'HomeController@ParticipantReport',
+        'as'=> 'generateParticipantsPdf'
+    ]); 
+
+    Route::post('/generateSurveyPdf',[
+        'uses' => 'HomeController@SurveyReport',
+        'as'=> 'generateSurveyPdf'
+    ]); 
 });

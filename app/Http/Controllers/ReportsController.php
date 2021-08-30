@@ -3,30 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Todo;
+use App\Questionnaire;
+use App\Question;
+use App\Answer;
+use App\Survey;
+use App\SurveyResponse;
 
-class TodosController extends Controller
+class ReportsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function reports()
     {
-        $this->middleware('auth');
-    }
+        $reports = SurveyResponse::all();
+        $participants = SurveyResponse::select('email')->distinct()->get();
+        $surveys = SurveyResponse::select('category_id')->distinct()->get();
+        foreach($surveys as $survey){
+            $survey->category = Questionnaire::where('id',$survey->category_id)->first();
+        }
 
-    public function index()
-    {
-        // $data=Todo::all();
-        // dd($data);
-        return view('welcome');
+        foreach($reports as $report){
+            $report->category = Questionnaire::where('id',$report->category_id)->first();
+            $report->answer = Answer::where('id',$report->answer_id)->first();
+        }
+        return view ('reports.index',compact('reports','participants','surveys'));
     }
 
     /**
@@ -36,7 +39,7 @@ class TodosController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**

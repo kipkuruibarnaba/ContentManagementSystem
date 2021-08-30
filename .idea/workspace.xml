@@ -2,22 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be698595-0aaa-4ec9-aaf0-204289bb242a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/posts/1602245661image1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/posts/1602245674image3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/posts/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/posts/1602158651image1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/posts/1602245389image1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/posts/1602158707image2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/posts/1602245407image2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/posts/1602158725image3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/posts/1602245428image3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/categories/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/categories/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/posts/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/posts/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/posts/trash.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/posts/trash.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +124,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../app_10020" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager">
@@ -173,7 +158,8 @@
       <workItem from="1601964723511" duration="31929000" />
       <workItem from="1602070828251" duration="10106000" />
       <workItem from="1602137879027" duration="20540000" />
-      <workItem from="1602221396289" duration="14553000" />
+      <workItem from="1602221396289" duration="14828000" />
+      <workItem from="1602492628622" duration="113000" />
     </task>
     <servers />
   </component>
@@ -196,6 +182,10 @@
       <screen x="0" y="0" width="1280" height="984" />
     </state>
     <state x="302" y="148" width="690" height="687" key="#phpunit.xml/0.0.1280.984@0.0.1280.984" timestamp="1602141502947" />
+    <state x="420" y="247" key="FileChooserDialogImpl" timestamp="1602492742959">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="420" y="247" key="FileChooserDialogImpl/0.0.1280.984@0.0.1280.984" timestamp="1602492742959" />
     <state width="1237" height="243" key="GridCell.Tab.0.bottom" timestamp="1602074163120">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
@@ -216,10 +206,10 @@
       <screen x="0" y="0" width="1280" height="984" />
     </state>
     <state x="429" y="291" key="NewPhpClassDialog/0.0.1280.984@0.0.1280.984" timestamp="1602070033688" />
-    <state x="316" y="317" key="com.intellij.ide.util.TipDialog" timestamp="1602137891002">
+    <state x="316" y="317" key="com.intellij.ide.util.TipDialog" timestamp="1602492685394">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="316" y="317" key="com.intellij.ide.util.TipDialog/0.0.1280.984@0.0.1280.984" timestamp="1602137891002" />
+    <state x="316" y="317" key="com.intellij.ide.util.TipDialog/0.0.1280.984@0.0.1280.984" timestamp="1602492685394" />
     <state x="269" y="13" width="758" height="957" key="find.popup" timestamp="1602073673530">
       <screen x="0" y="0" width="1280" height="984" />
     </state>

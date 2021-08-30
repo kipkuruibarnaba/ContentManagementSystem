@@ -74,43 +74,37 @@
         </nav>
         <br>
         <div class="container">
-           <div class="row">
-               <div class="col-lg-4">
-                   @if(Auth::check())
-                   <ul class="list-group">
-                       <li class="list-group-item">
-                           <a href="{{route('home')}}">Home</a>
-                       </li>
-                       <li class="list-group-item">
-                           <a href="{{ route('categories') }}">Categories</a>
-                       </li>
-                       <li class="list-group-item">
-                           <a href="{{ route('posts') }}">Posts</a>
-                       </li>
-                       <li class="list-group-item">
-                           <a href="{{ route('post.trash') }}">Trashed Posts</a>
-                       </li>
-                       <li class="list-group-item">
-                           <a href="{{ route('category.create') }}">Create New Category</a>
-                       </li>
-                       <li class="list-group-item">
-                           <a href="{{ route('post.create') }}">Create New Post</a>
-                       </li>
-                   </ul>
-                   @endif
-               </div>
-               <div class="col-lg-8">
-                   <main class="py-4">
-                       @yield('content')
-                   </main>
-               </div>
-           </div>
-        </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    @if(Auth::check())
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="{{route('home')}}">Home</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{{route('questionnaire')}}">Create Category</a>
+                        </li> 
+                        <li class="list-group-item">
+                            <a href="{{route('showquestionnaires')}}">Surveys</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{{route('showreports')}}">Reports</a>
+                        </li>
+
+                    </ul>
+                    @endif
+                </div>
+                <div class="col-lg-8">
+                    <main class="py-4">
+                        @yield('content')
+                    </main>
+                </div>
+            </div>
+         </div>
     </div>
     <script >   </script>
     <script  src="{{ asset('js/test.js') }}"></script>
     <script  src="{{ asset('js/toastr.js') }}"></script>
-{{--    <script  src="{{ asset('js/app.js') }}" ></script>--}}
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
@@ -119,6 +113,29 @@
         setTimeout(function() {
             $('#flash-messages').hide('fast');
         }, 10000);
+
+        $(document).ready(function(){
+
+            $('#participantFilter').hide();
+            $('#surveyFilter').hide();
+
+            $('#filterKey').change(function(){
+                let filterValue =  $('#filterKey').find(':selected').val();
+               if(filterValue ==1){
+                $('#participantFilter').show();
+                $('#surveyFilter').hide();
+               }
+
+               if(filterValue == 2){
+                $('#participantFilter').hide();
+                $('#surveyFilter').show();
+               }
+            })
+    
+
+
+        })
+
     </script>
 </body>
 </html>
